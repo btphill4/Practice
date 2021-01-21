@@ -15,6 +15,24 @@ loop : 1 to n-1     //outer loop
 end loop    //outer loop
 */
 
+//Xue's Psuedocode
+/* key = j
+insertionSort(A)
+for(j=2 to length[A])
+{
+    do{ 
+    key = A[J]
+    i = j-1
+    } while i > 0 and A[i] > key
+        do
+        {
+            A[i+1] = A[i]
+            i = i - 1
+        }
+    A[i+1] = key
+}
+*/
+
 void insertionSort(int arr[])
 {
     //initialize values
