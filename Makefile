@@ -13,22 +13,22 @@ CC=g++
 CFLAGS=-c -Wall
 
 #this target will compile all the files "make all"
-all: encode decode 
+all: helloWorld mergeSort 
 	
-encode: encode.cpp 
-	$(CC) encode.cpp -o encode
+helloWorld: helloWorld.cpp 
+	$(CC) helloWorld.cpp -o helloWorld
 
-encode.o: encode.cpp
-	$(CC) $(CFLAGS) encode.cpp
+helloWorld.o: helloWorld.cpp
+	$(CC) $(CFLAGS) helloWorld.cpp
 
-decode: decode.cpp
-	$(CC) decode.cpp -o decode
+mergeSort: mergeSort.cpp
+	$(CC) mergeSort.cpp -o mergeSort
 
-decode.o: decode.cpp
-	$(CC) $(CFLAGS) decode.cpp
+mergeSort.o: mergeSort.cpp
+	$(CC) $(CFLAGS) mergeSort.cpp
 
 clean:
-	rm -rf *o encode decode 
+	rm -rf *o helloWorld mergeSort 
 
 
 #this target will compile when "make compile" is executed
