@@ -13,7 +13,7 @@ CC=g++
 CFLAGS=-c -Wall
 
 #this target will compile all the files "make all"
-all: helloWorld mergeSort 
+all: helloWorld mergeSort lineByLineRead terminalInput
 	
 helloWorld: helloWorld.cpp 
 	$(CC) helloWorld.cpp -o helloWorld
@@ -27,8 +27,20 @@ mergeSort: mergeSort.cpp
 mergeSort.o: mergeSort.cpp
 	$(CC) $(CFLAGS) mergeSort.cpp
 
+lineByLineRead: lineByLineRead.cpp
+	$(CC) lineByLineRead.cpp -o lineByLineRead
+
+lineByLineRead.o: lineByLineRead.cpp
+	$(CC) $(CFLAGS) lineByLineRead.cpp
+
+terminalInput: terminalInput.cpp
+	$(CC) terminalInput.cpp -o terminalInput
+
+terminalInput.o: terminalInput.cpp
+	$(CC) $(CFLAGS) terminalInput.cpp
+
 clean:
-	rm -rf *o helloWorld mergeSort 
+	rm -rf *o helloWorld mergeSort lineByLineRead terminalInput
 
 
 #this target will compile when "make compile" is executed
