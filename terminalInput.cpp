@@ -33,24 +33,24 @@ int main ()
     while (getline(cin, line))
     {
         //string yeet = "yeet";
-        int size = sizeof(line);
+       /* int size = sizeof(line);
         string temp[size]; //= new string[size];
 
         for(int i = 0; i <= size; i++)                   
         {
            temp[i] = line[i];                            
         }  
-
+        */
         //prints line        
         //cout << line << endl;
 
-
+        /*
         for (int i = 0; i <= size;i++)
         {
-            if(temp[i] == "yeet")
-            {
+            //if(temp[i] == "yeet")
+            //{
                 cout << line << endl;
-            }
-        }
+            //}
+        }*/
     }
 }
