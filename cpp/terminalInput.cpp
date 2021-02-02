@@ -32,17 +32,28 @@ int main ()
     string line;
     while (getline(cin, line))
     {
-        //string yeet = "yeet";
-       /* int size = sizeof(line);
-        string temp[size]; //= new string[size];
+       string temp;
 
-        for(int i = 0; i <= size; i++)                   
-        {
-           temp[i] = line[i];                            
-        }  
-        */
+       string enter = "ENTER";
+
+       //for(int i = 0; i <= sizeof(line); i++)
+       //{
+           temp = line;
+      // }
+
         //prints line        
-        cout << line << endl;
+        //cout << temp << endl;
+
+        if(temp.find(enter) != std::string::npos)
+        {
+            cout << temp[2] << endl;
+        }
+        else
+        {
+            cout << "rip" << endl;
+        }
+
+
 
         /*
         for (int i = 0; i <= size;i++)
