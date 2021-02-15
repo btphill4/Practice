@@ -47,6 +47,7 @@ void insertionSort(int arr[])
 
         while(j >= 0 && arr[j] > key)   //check to see if j index position is zero or greater than 0 and that arr[j] is larger than the key 
         {
+            cout << i << ">" << key << endl;
             arr[j+1] = arr[j];          //shift the larger elements one to the right (iterate through ascending order)
             j = j - 1;                  //set j index to the value to the left until it reaches the key or 0 (decrementing)
         }
