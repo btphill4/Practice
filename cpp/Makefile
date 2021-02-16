@@ -13,7 +13,7 @@ CC=g++
 CFLAGS=-c -Wall
 
 #this target will compile all the files "make all"
-all: helloWorld mergeSort lineByLineRead terminalInput insertionSortInt quickSortXue
+all: helloWorld mergeSort lineByLineRead terminalInput insertionSortInt quickSortXue detailedInsertionSort detailedMergeSort detailedQuickSort
 	
 helloWorld: helloWorld.cpp 
 	$(CC) helloWorld.cpp -o helloWorld
@@ -51,8 +51,26 @@ quickSortXue: quickSortXue.cpp
 quickSortXue.o: quickSortXue.cpp
 	$(CC) $(CFLAGS) quickSortXue.cpp
 
+detailedInsertionSort: detailedInsertionSort.cpp 
+	$(CC) detailedInsertionSort.cpp -o detailedInsertionSort
+
+detailedInsertionSort.o: detailedInsertionSort.cpp
+	$(CC) $(CFLAGS) detailedInsertionSort.cpp
+
+detailedMergeSort: detailedMergeSort.cpp 
+	$(CC) detailedMergeSort.cpp -o detailedMergeSort
+
+detailedMergeSort.o: detailedMergeSort.cpp
+	$(CC) $(CFLAGS) detailedMergeSort.cpp
+
+detailedQuickSort: detailedQuickSort.cpp 
+	$(CC) detailedQuickSort.cpp -o detailedQuickSort
+
+detailedQuickSort.o: detailedQuickSort.cpp
+	$(CC) $(CFLAGS) detailedQuickSort.cpp
+
 clean:
-	rm -rf *o helloWorld mergeSort lineByLineRead terminalInput insertionSortInt quickSortXue
+	rm -rf *o helloWorld mergeSort lineByLineRead terminalInput insertionSortInt quickSortXue detailedInsertionSort detailedMergeSort detailedQuickSort
 
 
 #this target will compile when "make compile" is executed
