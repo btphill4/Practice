@@ -42,17 +42,26 @@ mergeSort(arr[],l,r)
 
 
 */
+int comps = 0; //used for comparisions
 
 //merge algorithm
 void merge(int arr[], int l, int m, int r)
 {
+    comps++;
     int i = l;                  //starting index for left subarray           
     int j = m+1;                //starting index for right subarray (one to the right of mid)
     int k = l;                  //starting index for the temporary index
 
     int size = (r-1) +1;        //calculates the size of the array using right value and adding one extra character
     int temp[size];                //temp array
-    cout << l << "<" << r << endl; //prints comparisions
+
+    cout << "Iteration: " << comps << endl;
+    for(int i = 0; i <= 4; i++)
+    {
+        cout << arr[i] << ", ";
+    }
+    cout << endl << arr[l] << "<" << arr[r] << endl; //prints comparisions
+
     while(i <= m && j <=r)      //i is the left most index of the left array, j is the first index after the mid(m+1)
     {
         if(arr[i]<= arr[j])     //i element in left subarray is smaller than the right subarray of the element j
@@ -89,9 +98,16 @@ void merge(int arr[], int l, int m, int r)
 //merge sort algorithm
 void mergeSort(int arr[],int l, int r)
 {
-    cout << l << "<" << r << endl; //print comparisions
-    if(l < r)   //check that the left value is less than the right
+    comps++;
+    cout << "Iterations: " << comps << endl;
+     for(int i = 0; i <= 4; i++)
     {
+        cout << arr[i] << ", ";
+    }
+    cout << endl << arr[l] << "<" << arr[r] << endl;; //print comparisions
+
+    if(l < r)   //check that the left value is less than the right
+    {   
         int m = (l+r)/2;         //calculates the midpoint by dividing the sum of left and right divided by 2
         mergeSort(arr,l,m);     //right is the new midpoint
         mergeSort(arr,m+1,r);   //right subarray is m+1
@@ -102,8 +118,8 @@ void mergeSort(int arr[],int l, int r)
 int main(){
     
     //initialize
-    int size;
-
+    int size = 5;
+    /*
     cout <<"How many numbers do you want to add" << endl;
     cin >> size;
     //user input
@@ -113,14 +129,15 @@ int main(){
     {
         cin >> myArr[i];
     }
-
+    */
+   int myArr[5] = {19,16,13,25,22};
     //print input
     cout << "Before mergeSort" << endl;
     for(int i = 0; i < size; i++)
     {
         cout << myArr[i] << ", ";
     }
-
+    cout << endl;
     //mergeSort function
     mergeSort(myArr,0,size -1);       //0 start index and 4 is size - 1       
 
