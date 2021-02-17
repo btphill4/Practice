@@ -43,7 +43,7 @@ void printArray(int arr[], int n)
 /* Driver code */
 int main()
 {
-    int arr[] = { 19,16,13,25,22};
+    int arr[] = { 11,15,14,13,12};
     int n = sizeof(arr) / sizeof(arr[0]);
 
     insertionSort(arr, n);
