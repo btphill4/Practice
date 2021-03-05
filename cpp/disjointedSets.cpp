@@ -41,12 +41,13 @@ void print(vector<int> const &universe, DisjointSet &dis)
 
 int main() 
 {
-   vector<int> wholeset = { 6,7,1,2,3 }; // items of whole set
+   vector<int> wholeset = { -3, 1, 1, 3, 1, 5, 5, 7, -3, 9, 9, 11, 9, 13, 13, 15 }; // items of whole set
    DisjointSet dis; //initialize DisjointSet class
    dis.makeSet(wholeset); // create individual set of the items of wholeset
-   dis.Union(7, 6); // 7,6 are in same set
+   dis.Union(6, 14); // 7,6 are in same set
+   dis.Union(7,15);
    print(wholeset, dis);
-   if (dis.Find(7) == dis.Find(6)) // if they are belong to same set or not.
+   if (dis.Find(6) == dis.Find(14)) // if they are belong to same set or not.
       cout<<"Yes"<<endl;
    else
       cout<<"No";
@@ -54,5 +55,7 @@ int main()
       cout<<"Yes"<<endl;
    else
       cout<<"No";
+   cout<< "dis.find(7) " <<dis.Find(7) << endl;
+   cout<< "dis.find(15) " <<dis.Find(15) << endl;
    return 0;
 }
