@@ -148,27 +148,45 @@ void swap(int *x, int *y)
 	*x = *y; 
 	*y = temp; 
 } 
+void heapPrint(MinHeap* a)
+{
+	 for(int i = 1; i <= a->getSize(); i++)
+    {
+        //if we are at the end of the arr, don't print a comma
+        if(i == a->getSize())
+        {
+            cout << a[i] << endl;
+        }
+
+        //print everything and put a commma after
+        else
+        {
+        cout << a[i]<< ", ";
+        }
+	}
+}
 
 
 // Driver program to test above functions 
 int main() 
 { 
-	MinHeap h(11); 
-	h.insertKey(11);
-	h.insertKey(13);
-	h.insertKey(15);
-	h.insertKey(19);
-	h.insertKey(21);
-	h.insertKey(23);
-	h.insertKey(25);
-	h.insertKey(27);
-	h.insertKey(29);
+	MinHeap h(7); 
+	h.insertKey(70);
+	h.insertKey(60);
+	h.insertKey(50);
+	h.insertKey(40);
+	h.insertKey(30);
+	h.insertKey(20);
+	h.insertKey(10);
+	//h.insertKey(27);
+	//h.insertKey(29);
 
 	for(int i = 0; i <= h.getCap(); i ++)
 	{
 		//cout << "[ " << i << " ] "<< h.extractMin() << endl;
 		
 	}
+	h.
 	h.decreaseKey(9,10);
 
 	/*h.insertKey(3); 
