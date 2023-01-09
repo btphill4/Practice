@@ -1,0 +1,381 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C++ Notes
+
+Run Program:
+g++ --std=c++11 -pedantic -Wall filename.cpp
+g++ --std=c++17 -pedantic -Wall filename.cpp
+	//c++17 is the version 
+sudo g++ hello.cpp
+
+
+
+#include<iostream>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main() { }
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Initializing Variables:
+	double a = 1.2;
+	double b = {2.3};
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Queues:
+	class Queue {    
+	private:
+	    int queue_size;
+	protected:    
+	    int *buffer;    
+	    int front;    
+	    int rear;     
+	public:
+	    void enqueue(int v) { //implementation }
+	    int dequeue(void){ // implementation } 
+	}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Instantiating an object in C++ :  
+
+	Queue q1(5), *q2;    // q1 is a Queue object, q2 is a pointer
+	q2 = new Queue(5);   // Instantiate a new object pointed to 					by q2
+
+	q1.enqueue(2); 
+	q1.enqueue(8);  
+
+	q2->enqueue (25);    // Since q2 is a pointer we use -> to 					access
+	x = q2->dequeue();   //   its members & methods
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Scopes in C++: 
+
+Scope resolution operator (::) must be used to indicate which class the method belongs to:
+	ClassName::method_name // :: is the scope resolution 						operator
+Queue example:
+	bool compact(void)         // if defined inside the class
+becomes:
+	bool Queue::compact(void)  // if defined outside the class
+
+Implementation of compact:
+	bool Queue::compact(void)  {    
+		if (front == 0) {
+		    cout<<"Error: Queue overflow"<<endl;
+		    return false;
+		}
+		else {
+		    for (int i=0; i<rear-front; i++)
+		        buffer[i] = buffer[i+front];
+		    rear = rear - front;
+		    front = nullptr;
+		    return true;
+		}
+	} 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Input and Output:
+
+input: 
+	Use "cin"
+read one word
+	cin >> str;
+read more than one word
+	std::getline(std::cin, str);
+output:
+	Use "cout"
+	 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Reference:
+
+  Report r();          // an object is allocated to r
+  Report *rp1, *rp2;   // two pointers declared
+  rp1 = &r;            // rp1 points to object r
+  rp2 = new Report;    // an object is created & linked to rp2
+  // use rp1 & rp2
+  delete(rp2)          // free memory allocate for rp2 when we are 				  done
+  // we do not need to delete rp1 since it is pointing to r.  The 
+  //   memory allocated for r will be freed when r goes out of scope.
+	
+  Report r;            // a reference is allocated 
+  r = new Report ();   // an object is created & linked to r
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Static Memory:
+
+(Static Memory hold static variables like constants)
+
+void login(){
+static int counter = 0;     //will only be initizialized once
+}
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Stack Memory:
+
+
+All non-static local variables obtain memory from the stack
+int bar(int j) {
+    int k = 2; 
+    j = j + k;
+    return (j);
+}
+void main(void) {
+    int i =0;
+    i++;
+    i = bar(i);
+}
+
+If an object is on the stack, the destructor will be called when the object goes out of scope.  In this case, no delete operation is necessary.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Heap:
+
+The heap is used for dynamic memory allocation
+
+All heap objects must be explicitly deleted before leaving the function if they are no longer needed. 
+
+
+Example (C style):
+	struct contact {
+	  char name[30];
+	  int phone;
+	};
+	p = (struct contact *) malloc(sizeof(struct contact));
+
+Example (C++ style):
+	class contact { 
+	  char name[30];
+	  int phone;
+	};
+	p = new contact;
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Stack VS Heap:
+
+When an object goes out of scope:
+	Stack: automatically popped out of the stack.  The memory 			is deallocated (freed)
+	Heap: must be explicitly freed by the programmer
+Example:
+	pC = (struct contact*) malloc(sizeof(struct contact));
+
+	    or
+	pCpp = new contact; 
+	...
+	free(pC);      // return the memory pointed by pC to heap
+	pC = 0;        // make sure pC is no longer valid.
+	delete pCpp;   // return the memory pointed by pCpp to heap
+	p = nullptr;   // make sure pCpp is no longer valid.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Destructors & Constructors:
+
+A constructor is a function used to initialize objects
+	Queue(void) {        
+	  front = 0; rear = 0;
+	  queue_size = 0;
+	  buffer = NULL; 
+	}
+	Queue(int n) {    
+	  front = 0; rear = 0;
+	    queue_size = n;
+	    buffer = new int[queue_size];
+	}  
+  
+A constructor with no parameters is called the default constructor and ensures that the object is not instantiated without initialized values.
+
+A destructor is used to “collect garbage”
+	~Queue(void) {    
+	    delete[] buffer;
+	    buffer = NULL;
+	}
+
+The delete function explicitly calls the destructor of the class.
+
+USE virtual WHEN USING DESTRUCTORS
+
+Why do we need destructors?
+
+	void application() {
+	  Queue *myQueue;           // declare a pointer only
+	  myQueue = new Queue(500); // call constructor
+	  myQueue->enqueue(23);     // add 23 on myQueue
+	  myQueue->enqueue(8);      // add 8 on myQueue
+	  delete myQueue;           // delete will call ~Queue();
+	    ...
+	}   // It will be too late to call ~Queue() here : ~Queue() 
+
+A destructor should only delete an object created in the class that is linked to a variable in the class.  Do not delete variables that were not allocated using new by the object.
+
+***********IF YOU USE HEAP MEMORY AND USE new() use delete********** 
+***************for every new() use one delete***********************
+
+Class Example Constructor:
+class Queue {
+private:
+int queue_size;
+protected:
+int *buffer;
+int front; 
+int rear;
+public
+print();
+add(int m);
+...
+}
+void application(){
+Queue *myQueue  //pointer to myQueue
+Queue myQueue(500) 	//call constructor
+int x,  y;
+myQueue->enque(35); //enque 35
+delete myQueue; //delete qill call ~Queue()
+}
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+FACTORIAL CODE:
+
+int fac(int n){
+	if (n<= 1)
+		return 1;
+	else
+		return n*fac(n-1);
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Memory Allocation:
+
+Global variables - allocated in static memory
+int g1 = 1, g2 = 2, g3 = 3; 	//located outside of main
+
+int main()
+{
+//stack variables are static
+h1 = 2;
+h3 = 4;
+}
+
+heap is dynamic 
+h1 = new int; 		//new int means dynamic
+
+.capacity() 	//how much a vector can hold rather 				  than how much is in it
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Vectors:
+
+A vector holds a sequence of values and grows as additional items are added.  Vectors allow efficient access to individual values but they have an advantage over arrays in that they grow in size as needed.  To add a value to the end of a vector we use the push_back() method.  
+
+
+Essentially an arrayList **
+
+Ex:
+   vector<int> v4 = {8, 3, 1, 5, 12, 13, 2, 7, 10};  
+   sort(v4.begin(), v4.end());
+
+.capacity(); //how much an object can hold rather than how much is in it
+.pushback();
+
+
+Adding Elements:
+v1.pushback(int m); //adds m to the end
+
+adding 10 elements:
+for (int ii=0;ii<10;ii++) {
+    v1.push_back(ii+10);
+  }
+
+
+Removing elements: 
+
+v1.erase(v1.begin()); //remove first element
+v1.erase(v1.begin() + 3); //removes third element
+
+v1.erase(v1.end()-1);  //Removed last element
+v1.erase(v1.end()-3);  //Removed 3rd to last 						element 
+
+v1.erase(v1.begin(), v1.begin() + v1.size()/2); 
+		//removes first half of elements
+
+Print Vector: 
+
+At top of code:
+template<typename T> void printVector(vector<T> vec, string name="");
+
+At bottom of code:
+template<typename T>
+void printVector(vector<T> vec, const string name) {
+  cout << "Vector " << name << " s=" << vec.size() 
+                    << " c=" << vec.capacity() << "  ";
+  for (auto& ii : vec) {
+    cout << ii << ", ";
+  }
+  cout << endl;
+}
+
+print back and front
+cout << " v3 front: " << v3.front() << endl;
+cout << " v3 back: " << v3.back() << endl;
+
+
+
+
+Sort Elements: 
+sort(v1.begin(), v1.end());
+
+// The following is safer - using an iterator
+  cout << "  Using an iterator: ";
+  for (vector<int>::iterator ii = v1.begin(); ii != v1.end(); ++ii) {
+    cout << (*ii) << ", ";
+  }
+  cout << endl;
+
+  cout << "  Using for-each: ";
+  for (auto& ii : v1) {
+    cout << ii << ", ";
+  }
+  cout << endl;
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Maps
+
+Ex:
+int main(){
+map<string, int> grades;
+  grades.insert(pair<string, int>("Bruce", 84));
+}
+
+int gradeCount = grades.erase("Jackson"); //delete 
+
+//Look for a grade for Rachel
+  if (grades.find("Rachel") == grades.end() ) {
+     cout << "Unable to find a grade for Rachel" << endl;
+  }
+  else {
+     cout << "Rachel's grade = " << grades.at("Rachel") << endl;
+  }
+
+
+Update an element:
+grades.at("Bruce") += 5; //adding 5 to his grade
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PROJECT 3:
+use vectors
+DONT USE POINTERS
+
+Combine like terms use map(similiar to hashmap)
+	use insert(pair<string, int>("", 1))
+
+do not use vectors as an array
+use it as a collection (iterators)
+
+practice 3:
+might not need a destructor or need an empty destructor
+similiar to memory management practice
+
+

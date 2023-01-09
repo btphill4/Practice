@@ -1,0 +1,106 @@
+Commands in c
+
+
+GCC Commands:
+cd ~/Desktop/csc240/assignments/c/
+run program: gcc --std=c11 -pedantic -Wall filename.c
+test program: ./a.out
+change directory: cd
+new directory: mkdir
+see directories: dir
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Data Types:
+%d - integer
+%x - hexidecimal
+%u - unsigned
+%c - character
+%f - floating point
+%s - string
+%d - double
+%c - characters
+%.2f - format to 2 decimals
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Header Notes: 
+#include<stdio.h> 
+#include<stdlib.h>
+** Don't include ".c" files **
+#ifndef MYSTUFF_H  /* Check to see if the symbol has been defined */
+#define MYSTUFF_H  /* Defines the symbol */
+
+#define NUM 10 	/* Macro / symbolic constant */
+	- where ever there is NUM, it replaces it with 10
+	*ex: int a = NUM;
+	     int b = 3 + NUM;
+		 	
+
+main functions: int main(){} OR int main(void){}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Various Commands for c:
+print: printf()
+get input: scanf(%d)
+\n: new line
+sizeof()
+get input: scanf(%d, &b) /* d = double b = variable
+copy to a string: Strncpy()
+Strings: char stringName[]
+
+
+
+/* C Notes */
+-------------------------------------------
+* Union only holds one element
+* Strut holds multiple elements, can be different types of elements (string, int)
+* Pointers
+	- "*" references the value ("1", "j")
+	- no "*" references the address ("s = 0x7ffcb73a3173")
+	-"&" points to address
+	- 
+	int x = 7;
+	printf("x is %d\n" , x); 
+	returns x is 7
+	int *aptr = &x;	
+	printf("x is %d\n" , aptr); 
+	returns address
+	printf("x is %d\n" , *aptr); 
+	returns x is 14
+	*aptr = 21; //changes aptr to 21
+	printf("x is %d\n" , x, *aptr);
+	returns x is 21 21
+
+
+*Enumeration constant
+typedef enum {ONE, TEN =10, TWENTY=20} numbers_t;
+
+int main(void) {
+int my_int = 30;
+const int my_constant = NUM * 2
+ 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+project 2
+
+Easiest way to make a string
+	-sprintf(mystr, "Hello %d %.2f", 10, 9.8999999);
+	-printf("mystr: %s\n" ,mystr);		
+
+polynomial
+create a node pointer
+should be a basic list of terms
+dont sort just print
+
+get term working first
+term header file 
+	defines a type to hold a form (struct)
+	constant pointer term (sprintf())
+
+dont include c file
+include h file
+
+use a basic list to for terms
+	
+
+
+
