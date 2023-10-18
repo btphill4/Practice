@@ -1,0 +1,15 @@
+## Intial Thoughts **
+Idea 1: 1 player
+- Turns based fighting game that uses various character classes (listed below).
+- Allow the user to choose a class at the start and fight other classes
+- Inbetween fights user travels to another area (can be selected?) where they have a chance to find potions and items usable in the fight
+- Fighting will allow user to select multiple abilities (Like pokemon), use items, or run- 
+- Attacks will depend on range and use generator to decide attack
+- Leveling up after each fight (enemies scale? random generator -> player level +- 2)
+
+Idea 2: Same as above but 2 players (maybe more)
+
+Idea 3: Pokemon style (same as above)
+- Players can try to recruit members if they are close to killing the player (lower health higher chance)
+- Up to 4-6 in a party
+- 

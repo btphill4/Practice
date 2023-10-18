@@ -1,0 +1,94 @@
+## Install npm Script
+#!/bin/bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
+
+## Create Base Files script
+#!/bin/bash
+npx create-react-app dirName
+
+
+## start script on port IP:3000
+#!/bin/bash
+cd dirName
+npm start
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## Compents - Building blocks of react applications
+- Video, profile, images
+- Reusable
+
+(Instragram page example)
+- Search
+- Profile Description
+- Stories Components
+- Posts
+
+Example component layout
+class Simple extends React.component {
+    state = {};                  //<--- the data we want to render (when state changes, render is run again)
+    render() {                   //<--- how the user interface will look based on below code
+        <div>
+            <h1>Hello</h1>       //<----- prints hello
+        </div>
+    }
+}
+
+
+## Props - Properties that allow us to pass arguments or data to components
+- Props are passed to components similar to HTML-tag attributes
+
+Example Props
+App.js
+import React from 'React';
+
+class App extends React.components {
+    render() {
+        return (
+            <div>
+                <h1>(this.props.carProp)</h1>       //<--- access Properties passed to a component
+                <h1>(this.props.bukeProp)</h2>      //<--- access Properties passed to a component
+            </div>
+        );
+    }
+}
+
+Main.js
+import React from 'React';
+import ReactDOM from 'react-dom';
+import app from './App.jsx';
+
+ReactDOM.render(<App carProp = "1600 cc" bikeProp = "150cc"/>,
+    document.getElementById('app'));
+
+export default App;
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## Files explained
+- node_modules -> 3rd party libaries and modules installed (don't touch)
+- public -> public assets (i.e images, videos, logos, etc)
+- src -> source code 
+            -> App.tsx -> main
+
+- index.html -> basic html template
+                    -> <div id="root"></div>    <- entry point
+
+- package.json -> package information, dependecies (development and regular), scripts, versions 
+- tsconfig -> type script settings (don't need to touch)
+- vite.config -> don't need to touch
+
+
+
+
+# No for loop -> mapping
+ex:
+const cities = [
+        'New York',
+        'San Franscisco',
+        'Tokyo',
+        'London',
+        'Paris'
+    ];
+
+cities.map(cities => <li>{cities}</li>)

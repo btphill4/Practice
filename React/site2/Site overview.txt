@@ -1,0 +1,6 @@
+
+            Components
+
+            -> NavBar
+App ---->   -> Aside
+            -> GameGrid --> GameCard ---> LikeButton
